@@ -70,9 +70,12 @@ public class PlaceViewAdapter extends CursorAdapter {
 			// getPlaceRecordFromCursor() method to add the
 			// current place to the list
 			//removeAllViews();
-			if (newCursor.getPosition()>0) {
-				//list.clear();
-				list.add(getPlaceRecordFromCursor(newCursor));
+			if (newCursor.getCount()>0) {
+				list.clear();
+				for (int i = 0 ; i < newCursor.getCount();i++) {
+					newCursor.moveToNext();
+					list.add(getPlaceRecordFromCursor(newCursor));
+				}
 			}
             
             
@@ -167,7 +170,7 @@ public class PlaceViewAdapter extends CursorAdapter {
 		list.clear();
 
 		// TODO - delete all records in the ContentProvider
-		//mContext.getContentResolver().delete(null, null, null);
+		mContext.getContentResolver().delete(null, null, null);
 
         
         
